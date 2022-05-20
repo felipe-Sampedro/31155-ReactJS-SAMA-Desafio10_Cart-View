@@ -4,7 +4,7 @@ import { GlobalContext } from '../CartContext/CartContext';
 import ItemCount from '../ItmenCount/ItemCount'
 
 
-const ItemDetail = ({window}) => {
+const ItemDetail = ({item}) => {
 
     const [cantCompra, setCantCompra] = useState(0)
 
@@ -26,46 +26,24 @@ const ItemDetail = ({window}) => {
         <section className="py-1">
             <div className="container px-4 px-lg-5 my-5">
                 <div className="row gx-4 gx-lg-5 align-items-center">
-                    <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0" src={window.imagenUrl} alt="..." /></div>
+                    <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0" src={item.imagenUrl} alt="..." /></div>
                     <div className="col-md-6" style={{backgroundColor:"lightgray"}}>
-                        <h1 className="display-5 fw-bolder">{window.title}</h1>
+                        <h1 className="display-5 fw-bolder">{item.title}</h1>
                         <div className="fs-5 mb-5">
-                            <span>PRECIO: {window.price}</span>
+                            <span>PRECIO: {item.price}</span>
                         </div>
-                        <p className="lead">{window.description}</p>
+                        <p className="lead">{item.description}</p>
                         <div className='d-flex justify-content-center' /* style={{width:'250px'}} */>
-
-                            {/* <ItemCount window={window} onAdd={onAdd} quantityToAdd={cantCompra}/> */}
-                           {!isInCart(window.id) && <ItemCount window={window} /* onAdd={onAdd} */ quantityToAdd={cantCompra}/>}
-                        </div>
-
-                    {isInCart(window.id) ? (
-/*                         cantCompra > parseInt(0) ? ( */
+                        
+                        {!isInCart(item.id) ?
+                            <ItemCount item={item} onAdd={onAdd} quantityToAdd={cantCompra}/>
+                        : 
                             <Link to="/cart">
                                 <button className='btn btn-success m-2'>Ver carrito</button>
-                            </Link>
-
-                        ): /* ( <Link to="/cart">
-                                <button className='btn btn-success m-2'>Ver carrito</button>
-                            </Link>) */
-/*                              <Link to="/cart">
-                                <button onClick={()=> AddToCart(window,cantCompra)} className='btn btn-success m-2'>Ver carrito</button>
-                            </Link>    */
-                            <></>
-                            
+                             </Link>
                             }
 
-
-{/*                         {isInCart(window.id) ? (
-                            <Link to="/cart">
-                                <button onClick={()=> AddToCart(window,cantCompra)} className='btn btn-success m-2'>Ver carrito</button>
-                            </Link>
-                            ):(
-                                <p></p>
-                        )} */}
-
-
-
+                        </div>
 
                     </div>
                 </div>

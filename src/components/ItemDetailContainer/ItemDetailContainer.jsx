@@ -7,7 +7,7 @@ import Loader from '../Loader/Loader';
 const ItemDetailContainer = () => {
 
 const {id} = useParams()
-const [window, setWindow] = useState([])
+const [item, setItem] = useState([])
 const filtro = catalogo.find((prod)=>prod.id=== Number(id))
 
 useEffect(() => {
@@ -19,7 +19,7 @@ useEffect(() => {
 
   })
 
-  detalle.then((res) => setWindow(res))
+  detalle.then((res) => setItem(res))
 /*   .then(() => console(window)) */
   .catch((err) => console(err))
 
@@ -33,7 +33,7 @@ useEffect(() => {
   return (
     <div>
 
-      {window ? <ItemDetail window={window}/> : <Loader /> }
+      {window ? <ItemDetail item={item}/> : <Loader /> }
 
     </div>
   )
