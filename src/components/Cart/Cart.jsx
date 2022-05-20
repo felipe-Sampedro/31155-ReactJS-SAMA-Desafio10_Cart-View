@@ -18,10 +18,20 @@ const Cart = () => {
           
           <button className='btn btn-warning m-3' style={{height:'40px'}} onClick={()=>removeItem(item.id)}>Quitar Item</button>
         </div>
+        
 
       )): <h1>Carrito esta vacio</h1>
 
       }
+
+      {carrito.length > 0 ? ( 
+        <div>
+            <h1>Total: ${carrito.map((c)=>c.price*c.cantidad).reduce((prev, curr) => prev + curr, 0)}</h1>
+        </div>) : 
+        <></>
+
+      }
+
       {carrito.length !== 0?<button className='btn btn-danger m-2' onClick={()=> clear()}>Borrar Todo</button>:<p></p>}
       
     </>
