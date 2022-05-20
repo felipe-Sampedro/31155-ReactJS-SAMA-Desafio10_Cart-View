@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from '../../../src/logo.png'
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
+import CartWidget from '../CartWidget/CartWidget';
+import { GlobalContext } from '../CartContext/CartContext';
 
 
 
 
 const NavBar = () => {
+
+    const {itemCount,carrito} = useContext(GlobalContext)
+
   return (
       
     <nav className="navbar navbar-expand-lg navbar-light bg-white">
@@ -58,7 +63,7 @@ const NavBar = () => {
                 </ul>
                 <div className='p-2 d-flex align-items-center justify-items-center' style={{width:"auto", fontSize:"40px",backgroundColor:"rgb(211,211,211)"}}>
                     <FaShoppingCart />
-                    <p className='p-2' style={{marginBottom:'0',fontSize:"25px"}}>4</p>
+                    <p className='p-2' style={{marginBottom:'0',fontSize:"25px"}}>{carrito.map((cw)=>cw.cantidad).reduce((prev, curr) => prev + curr, 0)}</p>
                 </div>
             </div>
         </div>

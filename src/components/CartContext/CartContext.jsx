@@ -8,6 +8,7 @@ const CartContext = ({children}) => {
     
     const [carrito, setCarrito] = useState([])
     const [qtyCompra, setqtyCompra] = useState(0)
+    const [itemCount, setItemCount] = useState()
 
 
     const AddToCart = (producto,cantidadcomprada) => {
@@ -19,6 +20,8 @@ const CartContext = ({children}) => {
 
         repetido ? carrito.map(p=> p.id===producto.id? setqtyCompra(cantidadcomprada) : 0) :setCarrito([...carrito,producto])
 
+        setItemCount(producto.cantidad)
+        console.log('cartwidget' + cantidadcomprada);
     }
 
     const AddItem = (item,quantity)=>{
@@ -47,7 +50,7 @@ const CartContext = ({children}) => {
 
 
   return (
-    <GlobalContext.Provider value= {{carrito,setCarrito,qtyCompra,setqtyCompra,AddToCart,removeItem,clear,isInCart}} >
+    <GlobalContext.Provider value= {{carrito,setCarrito,qtyCompra,itemCount,setqtyCompra,AddToCart,removeItem,clear,isInCart}} >
         {children}
     </GlobalContext.Provider>
   )

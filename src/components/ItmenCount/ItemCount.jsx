@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { GlobalContext } from '../CartContext/CartContext'
+import CartWidget from '../CartWidget/CartWidget'
+import NavBar from '../NavBar/NavBar'
 
 const ItemCount = ({item,onAdd,quantityToAdd}) => {
     
